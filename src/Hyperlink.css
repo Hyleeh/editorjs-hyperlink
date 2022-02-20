@@ -1,70 +1,70 @@
 .ce-inline-tool-hyperlink-wrapper {
-    outline: none;
-    border: 0;
-    border-radius: 0 0 4px 4px;
-    margin: 0;
-    font-size: 13px;
-    padding: 10px;
-    width: 300px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: none;
-    font-weight: 500;
-    border-top: 1px solid rgba(201,201,204,.48);
+  outline: none;
+  border: 0;
+  border-radius: 0 0 4px 4px;
+  margin: 0;
+  font-size: 13px;
+  padding: 10px;
+  width: 300px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  font-weight: 500;
+  border-top: 1px solid rgba(201, 201, 204, 0.48);
 }
 
 .ce-inline-tool-hyperlink-wrapper.ce-inline-tool-hyperlink-wrapper--showed {
-    display: block;
+  display: block;
 }
 
 .ce-inline-tool-hyperlink--input,
 .ce-inline-tool-hyperlink--select-target {
-    border: 1px solid rgba(201,201,204,.48);
-    -webkit-box-shadow: inset 0 1px 2px 0 rgba(35,44,72,.06);
-    box-shadow: inset 0 1px 2px 0 rgba(35,44,72,.06);
-    border-radius: 5px;
-    padding: 5px 8px;
-    margin-bottom: 10px;
-    outline: none;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  border: 1px solid rgba(201, 201, 204, 0.48);
+  -webkit-box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, 0.06);
+  box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, 0.06);
+  border-radius: 5px;
+  padding: 5px 8px;
+  margin-bottom: 10px;
+  outline: none;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .ce-inline-tool-hyperlink--select-target {
-    width: 100%;
-    display: inline-block;
+  width: 100%;
+  display: inline-block;
 }
 .ce-inline-tool-hyperlink--select-target {
-    margin-right: 2%;
+  margin-right: 2%;
 }
 
 .ce-inline-tool-hyperlink--select-rel {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .ce-inline-tool-hyperlink--checkbox-label {
-    display: flex;
-    flex: 50%;
-    padding: 3px 10px;
-    align-items: center;
+  display: flex;
+  flex: 50%;
+  padding: 3px 10px;
+  align-items: center;
 }
 .ce-inline-tool-hyperlink--checkbox-input {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .ce-inline-tool-hyperlink--button {
-    display: block;
-    width: 100%;
-    background-color: #34c38f;
-    color: #fff;
-    padding: 7px 0;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+  display: block;
+  width: 100%;
+  background-color: #34c38f;
+  color: #fff;
+  padding: 7px 0;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
