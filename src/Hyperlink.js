@@ -182,6 +182,7 @@ export default class Hyperlink {
         href: true,
         target: true,
         rel: true,
+        class: true,
       },
     };
   }
@@ -403,6 +404,9 @@ export default class Hyperlink {
       anchorTag = this.selection.findParentTag("A");
     }
     if (anchorTag) {
+      if (!!this.config.className) {
+        anchorTag.className = this.config.className;
+      }
       if (!!target) {
         anchorTag["target"] = target;
       } else {

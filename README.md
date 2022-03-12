@@ -78,6 +78,7 @@ var editor = EditorJS({
 
 | Field  | Type     | Description      |
 | ------ | -------- | ---------------- |
+| className  | `string` | Defines a class attribute, defaults to null |
 | shortcut  | `string` | Shortcut, defaults to 'CMD+L' |
 | target | `string` | Defines a default target, defaults to null |
 | rel | `string` or `string[]` | Defines a default rel, defaults to null |
