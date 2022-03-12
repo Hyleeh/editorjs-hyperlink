@@ -15,12 +15,7 @@ A tool link with target & rel attribute for [Editor.js](https://editorjs.io).
 ### Get the package via NPM
 
 ```shell
-npm i editorjs-hyperlink -D
-```
-### or via Yarn
-
-```shell
-yarn add editorjs-hyperlink -D
+npm i -D git+ssh://git@github.com:dldevinc/editorjs-hyperlink.git#bdaf684
 ```
 
 Include module at your application
