@@ -104,19 +104,17 @@ export default class Hyperlink {
     }
 
     // Rel
+    let defaultRels = [];
+    if (typeof this.config.rel === "string") {
+      defaultRels.push(this.config.rel);
+    } else if (Array.isArray(this.config.rel)) {
+      defaultRels = defaultRels.concat(this.config.rel);
+    }
+
     this.nodes.selectRel = document.createElement("div");
     this.nodes.selectRel.classList.add(this.CSS.selectRel);
     for (const relAttribute of this.relAttributes) {
-      this.addCheckbox(this.nodes.selectRel, relAttribute, relAttribute);
-    }
-
-    if (!!this.config.rel && this.relAttributes.length === 0) {
-      this.addCheckbox(
-        this.nodes.selectTarget,
-        this.config.rel,
-        this.config.rel,
-        true
-      );
+      this.addCheckbox(this.nodes.selectRel, relAttribute, relAttribute, defaultRels.indexOf(relAttribute) >= 0);
     }
 
     // Button

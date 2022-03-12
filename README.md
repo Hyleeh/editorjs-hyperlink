@@ -80,7 +80,7 @@ var editor = EditorJS({
 | ------ | -------- | ---------------- |
 | shortcut  | `string` | Shortcut, defaults to 'CMD+L' |
 | target | `string` | Defines a default target, defaults to null |
-| rel | `string` | Defines a default rel, defaults to null |
+| rel | `string` or `string[]` | Defines a default rel, defaults to null |
 | availableTargets | `string[]` | Available link targets, defaults to all targets.<br>If empty array is provided, the control will be hidden and the default value applied. |
 | availableRels | `string[]` | Available link rels, defaults to all rels.<br>If empty array is provided, the control will be hidden and the default value applied. |
 | validate | `boolean` | Defines if an URL should be validated on saving |
