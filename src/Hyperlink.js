@@ -82,6 +82,11 @@ export default class Hyperlink {
     this.nodes.input.placeholder = "https://...";
     this.nodes.input.classList.add(this.CSS.input);
     this.nodes.input.addEventListener("blur", this.onBlur.bind(this));
+    this.nodes.input.addEventListener("keyup", (event) => {
+      if (event.keyCode === 13) {
+        this.savePressed(event);
+      }
+    });
 
     // Target
     this.nodes.selectTarget = document.createElement("select");
