@@ -1,5 +1,6 @@
 require("./Hyperlink.css").toString();
 
+import {IconLink, IconUnlink} from '@codexteam/icons';
 import SelectionUtils from "./SelectionUtils";
 
 export default class Hyperlink {
@@ -68,8 +69,19 @@ export default class Hyperlink {
     this.nodes.button = document.createElement("button");
     this.nodes.button.type = "button";
     this.nodes.button.classList.add(this.CSS.button, this.CSS.buttonModifier);
-    this.nodes.button.appendChild(this.iconSvg("link", 14, 10));
-    this.nodes.button.appendChild(this.iconSvg("unlink", 15, 11));
+
+    const iconLinkTemplate = document.createElement("template");
+    iconLinkTemplate.innerHTML = IconLink;
+    const iconLink = iconLinkTemplate.content.firstElementChild;
+    iconLink.classList.add("icon", "icon--link");
+    this.nodes.button.append(iconLink);
+
+    const iconUnlinkTemplate = document.createElement("template");
+    iconUnlinkTemplate.innerHTML = IconUnlink;
+    const iconUnlink = iconUnlinkTemplate.content.firstElementChild;
+    iconUnlink.classList.add("icon", "icon--unlink");
+    this.nodes.button.append(iconUnlink);
+
     return this.nodes.button;
   }
 
@@ -428,15 +440,6 @@ export default class Hyperlink {
 
   unlink() {
     document.execCommand(this.commandUnlink);
-  }
-
-  iconSvg(name, width = 14, height = 14) {
-    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    icon.classList.add("icon", "icon--" + name);
-    icon.setAttribute("width", width + "px");
-    icon.setAttribute("height", height + "px");
-    icon.innerHTML = `<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#${name}"></use>`;
-    return icon;
   }
 
   addOption(element, text, value = null) {
