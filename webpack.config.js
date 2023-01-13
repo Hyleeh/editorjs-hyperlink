@@ -6,13 +6,13 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /[\\/]node_modules[\\/]/,
         use: [
           {
             loader: "babel-loader",
-            query: {
-              presets: ["@babel/preset-env"],
-            },
+            options: {
+              cacheDirectory: path.resolve(__dirname, "cache")
+            }
           },
         ],
       },
@@ -22,11 +22,7 @@ module.exports = {
       },
       {
         test: /\.(svg)$/,
-        use: [
-          {
-            loader: "raw-loader",
-          },
-        ],
+        type: "asset/resource"
       },
     ],
   },

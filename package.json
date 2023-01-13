@@ -1,6 +1,6 @@
 {
   "name": "editorjs-hyperlink",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Link with target & rel attribute for Editor.js",
   "main": "./dist/bundle.js",
   "scripts": {
@@ -26,14 +26,16 @@
     "url": "https://github.com/trinhtam/editorjs-hyperlink/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "babel-loader": "^8.1.0",
-    "css-loader": "^3.5.3",
-    "raw-loader": "^4.0.1",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {}
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "@codexteam/icons": "^0.2.0",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "fast-async": "^6.3.8",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
 }
