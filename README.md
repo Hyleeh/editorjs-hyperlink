@@ -59,8 +59,7 @@ var editor = EditorJS({
       hyperlink: {
         Save: 'Salvar',
         'Select target': 'Seleziona destinazione',
-        'Select rel': 'Wählen rel',
-        'The URL is not valid.': 'The URL is not valid.'
+        'Select rel': 'Wählen rel'
       }
     }
   }
