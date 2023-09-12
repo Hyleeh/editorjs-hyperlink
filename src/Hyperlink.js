@@ -105,7 +105,11 @@ export default class Hyperlink {
     this.nodes.anchor = document.createElement("input");
     this.nodes.anchor.placeholder = "Anchor";
     this.nodes.anchor.classList.add(this.CSS.anchor);
-    this.nodes.input.addEventListener("keyup", (event) => {
+    this.nodes.anchor.addEventListener("blur", function() {
+      let newValue = this.value.replace(/\s+/g, '-');
+      this.value = newValue;
+    });
+    this.nodes.anchor.addEventListener("keyup", (event) => {
       if (event.keyCode === 13) {
         this.savePressed(event);
       }
@@ -455,12 +459,12 @@ export default class Hyperlink {
       if (!!this.config.className) {
         anchorTag.className = this.config.className;
       }
-      if (!!target) {
+      if (!!link && !!target) {
         anchorTag["target"] = target;
       } else {
         anchorTag.removeAttribute("target");
       }
-      if (!!rel) {
+      if (!!link && !!rel) {
         anchorTag["rel"] = rel;
       } else {
         anchorTag.removeAttribute("rel");
