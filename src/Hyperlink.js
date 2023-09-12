@@ -409,7 +409,9 @@ export default class Hyperlink {
 
   prepareLink(link) {
     link = link.trim();
-    link = this.addProtocol(link);
+    if (link) {
+      link = this.addProtocol(link);
+    }
     return link;
   }
 
@@ -433,13 +435,21 @@ export default class Hyperlink {
     let anchorTag = this.selection.findParentTag("A");
     if (anchorTag) {
       this.selection.expandToTag(anchorTag);
-      anchorTag.href = link;
-      anchorTag.name = anchor;
     } else {
       document.execCommand(this.commandLink, false, link);
       anchorTag = this.selection.findParentTag("A");
     }
     if (anchorTag) {
+      if (!!link) {
+        anchorTag.href = link;
+      } else {
+        anchorTag.removeAttribute("href");
+      }
+      if (!!anchor) {
+        anchorTag.name = anchor;
+      } else {
+        anchorTag.removeAttribute("name");
+      }
       if (!!this.config.className) {
         anchorTag.className = this.config.className;
       }

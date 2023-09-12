@@ -1,6 +1,7 @@
-const path = require("path");
+import path from "path";
+import webpack from "webpack";
 
-module.exports = {
+const config = {
   entry: "./src/Hyperlink.js",
   module: {
     rules: [
@@ -26,6 +27,11 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      filename: "[file].map"
+    })
+  ],
   output: {
     path: path.join(__dirname, "/dist"),
     publicPath: "/",
@@ -35,3 +41,5 @@ module.exports = {
     libraryTarget: "umd",
   },
 };
+
+export default config;
