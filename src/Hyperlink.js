@@ -431,13 +431,15 @@ export default class Hyperlink {
     return link;
   }
 
-  insertLink(link, anchor= "", target = "", rel = "") {
+  insertLink(link, anchor = "", target = "", rel = "") {
     let anchorTag = this.selection.findParentTag("A");
     if (anchorTag) {
       this.selection.expandToTag(anchorTag);
     } else {
-      document.execCommand(this.commandLink, false, link);
-      anchorTag = this.selection.findParentTag("A");
+      anchorTag = document.createElement("A");
+      anchorTag.appendChild(SelectionUtils.range.extractContents());
+      SelectionUtils.range.insertNode(anchorTag);
+      this.selection.expandToTag(anchorTag);
     }
     if (anchorTag) {
       if (!!link) {
