@@ -23,6 +23,7 @@ export default class Hyperlink {
       buttonModifier: "ce-inline-tool--link",
       buttonUnlink: "ce-inline-tool--unlink",
       input: "ce-inline-tool-hyperlink--input",
+      anchor: "ce-inline-tool-hyperlink--anchor",
       selectTarget: "ce-inline-tool-hyperlink--select-target",
       selectRel: "ce-inline-tool-hyperlink--select-rel",
       checkboxLabel: "ce-inline-tool-hyperlink--checkbox-label",
@@ -100,6 +101,16 @@ export default class Hyperlink {
       }
     });
 
+    // Anchor
+    this.nodes.anchor = document.createElement("input");
+    this.nodes.anchor.placeholder = "Anchor";
+    this.nodes.anchor.classList.add(this.CSS.anchor);
+    this.nodes.input.addEventListener("keyup", (event) => {
+      if (event.keyCode === 13) {
+        this.savePressed(event);
+      }
+    });
+
     // Target
     this.nodes.selectTarget = document.createElement("select");
     this.nodes.selectTarget.classList.add(this.CSS.selectTarget);
@@ -145,6 +156,7 @@ export default class Hyperlink {
 
     // append
     this.nodes.wrapper.appendChild(this.nodes.input);
+    this.nodes.wrapper.appendChild(this.nodes.anchor);
 
     if (!!this.targetAttributes && this.targetAttributes.length > 0) {
       this.nodes.wrapper.appendChild(this.nodes.selectTarget);
@@ -196,6 +208,7 @@ export default class Hyperlink {
   static get sanitize() {
     return {
       a: {
+        name: true,
         href: true,
         target: true,
         rel: true,
@@ -211,9 +224,11 @@ export default class Hyperlink {
       this.nodes.button.classList.add(this.CSS.buttonActive);
       this.openActions();
       const hrefAttr = anchorTag.getAttribute("href");
+      const nameAttr = anchorTag.getAttribute("name");
       const targetAttr = anchorTag.getAttribute("target");
       const relAttr = (anchorTag.getAttribute("rel") || "").split(" ");
       this.nodes.input.value = !!hrefAttr ? hrefAttr : "";
+      this.nodes.anchor.value = !!nameAttr ? nameAttr : "";
       this.nodes.selectTarget.value = !!targetAttr ? targetAttr : "";
       for (const checkbox of this.nodes.selectRel.getElementsByClassName(
         this.CSS.checkboxInput
@@ -311,6 +326,7 @@ export default class Hyperlink {
     }
     this.nodes.wrapper.classList.remove(this.CSS.wrapperShowed);
     this.nodes.input.value = "";
+    this.nodes.anchor.value = "";
     this.nodes.selectTarget.value = "";
     for (const checkbox of this.nodes.selectRel.getElementsByClassName(
       this.CSS.checkboxInput
@@ -329,7 +345,8 @@ export default class Hyperlink {
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    let value = this.nodes.input.value || "";
+    let value = (this.nodes.input.value || "").trim();
+    let anchor = (this.nodes.anchor.value || "").trim();
     let target = this.nodes.selectTarget.value || "";
     const rels = [];
     for (const checkbox of this.nodes.selectRel.getElementsByClassName(
@@ -340,7 +357,7 @@ export default class Hyperlink {
       }
     }
 
-    if (!value.trim()) {
+    if (!value && !anchor) {
       this.selection.restore();
       this.unlink();
       event.preventDefault();
@@ -371,7 +388,7 @@ export default class Hyperlink {
     this.selection.restore();
     this.selection.removeFakeBackground();
 
-    this.insertLink(value, target, rels.join(" "));
+    this.insertLink(value, anchor, target, rels.join(" "));
 
     this.selection.collapseToEnd();
     this.inlineToolbar.close();
@@ -412,11 +429,12 @@ export default class Hyperlink {
     return link;
   }
 
-  insertLink(link, target = "", rel = "") {
+  insertLink(link, anchor= "", target = "", rel = "") {
     let anchorTag = this.selection.findParentTag("A");
     if (anchorTag) {
       this.selection.expandToTag(anchorTag);
       anchorTag.href = link;
+      anchorTag.name = anchor;
     } else {
       document.execCommand(this.commandLink, false, link);
       anchorTag = this.selection.findParentTag("A");
